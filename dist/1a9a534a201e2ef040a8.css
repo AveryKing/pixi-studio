@@ -1,11 +1,20 @@
+body {
+    background:
+            radial-gradient(black 15%, transparent 16%) 0 0,
+            radial-gradient(black 15%, transparent 16%) 8px 8px,
+            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color:#282828;
+    background-size:16px 16px;
+}
 
-#sidebar-left[max-width~="170px"] h6 {
+#sidebar-left[max-width~="170px"] h4 {
     display:none;
 }
 #sidebar-left[max-width~="170px"] .sidebar-icon {
     margin-left:35%;
 }
-#sidebar-left[max-width~="121px"] h2 {
+#sidebar-left[max-width~="121px"] h1 {
     transition: font-size 1s;
     font-size:22px;
 }
@@ -17,7 +26,6 @@
     position: absolute;
     vertical-align:middle;
     text-align: center;
-
     font-family:Arial;
     left: 0;
     top:0;
@@ -40,9 +48,10 @@
     display:flex;
     align-items:center;
 
+    border-top: 1px solid gray;
     height: 40px;
     position:relative;
-    background-color: rgba(124, 124, 124, 0);
+    background-color: rgba(124, 124, 124, 0.71);
     width:100%;
     cursor:pointer;
 }
@@ -75,6 +84,24 @@
     border-top-left-radius:8px;
     border-bottom-left-radius:8px;
 }
+
+.toast {
+    height:50px;
+    width: 200px;
+    position:absolute;
+    top:0;
+    left:35%;
+    font-family:arial;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    border-radius:5px;
+
+    z-index:1000;
+    background-color: rgba(180, 180, 180, 0.68);
+
+}
+
 
 
 @media all and (max-width: 1000px) {
