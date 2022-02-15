@@ -565,7 +565,18 @@ eval("\n\nmodule.exports = {\n  isString: function(arg) {\n    return typeof(arg
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"./node_modules/pixi.js/dist/esm/pixi.js\");\n\r\n\r\nconst app = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Application({\r\n    width:800,\r\n    height:500\r\n});\r\ndocument.body.addChild(app.view);\n\n//# sourceURL=webpack://pixi-studio/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var pixi_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! pixi.js */ \"./node_modules/pixi.js/dist/esm/pixi.js\");\n/* harmony import */ var _toast_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toast.js */ \"./src/toast.js\");\n\r\n\r\nlet selectedTool = 'none';\r\n\r\nconst tools = []\r\nconst app = new pixi_js__WEBPACK_IMPORTED_MODULE_0__.Application({\r\n    width:800,\r\n    height:500,\r\n    backgroundColor:0xffffff\r\n});\r\ndocument.querySelector('#lab-view').appendChild(app.view);\r\n\r\ndocument.querySelectorAll('#sidebar-left a').forEach(button => {\r\n    const toolObj = {}\r\n    toolObj.name = button.dataset.type;\r\n    toolObj.onClick = () => {\r\n        selectedTool = toolObj.name;\r\n    }\r\n})\r\napp.view.addEventListener('click', (e) => {\r\n    if(!selectedTool) {\r\n        new _toast_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]('info','Please select a tool');\r\n    }\r\n})\n\n//# sourceURL=webpack://pixi-studio/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/toast.js":
+/*!**********************!*\
+  !*** ./src/toast.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Toast)\n/* harmony export */ });\nclass Toast {\r\n    constructor() {\r\n        alert(11111);\r\n    }\r\n}\n\n//# sourceURL=webpack://pixi-studio/./src/toast.js?");
 
 /***/ })
 

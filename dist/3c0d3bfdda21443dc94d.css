@@ -69,20 +69,3 @@ body {
     border-top-left-radius:8px;
     border-bottom-left-radius:8px;
 }
-
-.toast {
-    height:50px;
-    width: 200px;
-    position:absolute;
-    top:0;
-    left:35%;
-    font-family:arial;
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    border-radius:5px;
-
-    z-index:1000;
-    background-color: rgba(180, 180, 180, 0.68);
-
-}
