@@ -39,15 +39,18 @@ const app = new PIXI.Application({
     backgroundColor:0xffffff
 });
 
-const getMousePosition = () => {
-
+const getMousePosition = (e) => {
+    const rect = app.view.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    return {x: x, y: y};
 }
-
 const draw  = () => {
 
 }
 
-const startDrawing = (type) => {
+const startDrawing = (e,type) => {
+    const {x, y} = getMousePosition(e)
     const newGraphic = new PIXI.Graphics();
     newGraphic.lineStyle(1,0x000000);
     switch(type) {
@@ -58,7 +61,8 @@ const startDrawing = (type) => {
             newGraphic.drawCircle(0,0,10,10);
             break;
     }
-
+    newGraphic.x = x;
+    newGraphic.y = y;
     newGraphic.endFill();
     app.stage.addChild(newGraphic)
 }
@@ -71,13 +75,14 @@ document.querySelector('#lab-view').appendChild(app.view);
 const addEvt  = () => document.querySelector('canvas').addEventListener('mousemove', draw);
 const rmEvt  = () => document.querySelector('canvas').removeEventListener('mousemove', draw);
 
-app.view.addEventListener('mousedown', function handleClick()
+app.view.addEventListener('mousedown', function handleClick(e)
 {
+
     if(!selectedTool) {
         new bootstrap.Toast('#myToast').show();
     } else {
         addEvt();
-        startDrawing(selectedTool);
+        startDrawing(e,selectedTool);
     }
 });
 
