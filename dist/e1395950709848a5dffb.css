@@ -1,0 +1,71 @@
+body {
+    background:
+            radial-gradient(black 15%, transparent 16%) 0 0,
+            radial-gradient(black 15%, transparent 16%) 8px 8px,
+            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+            radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color:#282828;
+    background-size:16px 16px;
+}
+
+#sidebar-left {
+    user-select:none;
+    display: block;
+    position: absolute;
+    vertical-align:middle;
+    text-align: center;
+    font-family:Arial;
+    left: 0;
+    top:0;
+    border: 1px solid gray;
+    width: 200px;
+    height:100%;
+    flex-wrap:wrap;
+    background-color:#474747;
+    color: #FFFFFF;
+    border-top-right-radius:8px;
+    border-bottom-right-radius:8px;
+}
+
+.sidebar-icon {
+    margin-left:40px;
+}
+
+.sidebar-button {
+    display:flex;
+    align-items:center;
+    border-top: 1px solid gray;
+    height: 40px;
+    position:relative;
+    background-color: rgba(124, 124, 124, 0.71);
+    width:100%;
+    cursor:pointer;
+}
+.sidebar-button:hover {
+    background-color: rgb(124, 124, 124);
+}
+
+#lab-view {
+    position:absolute;
+    left:280px;
+    top:40px;
+    width:800px;
+    height:500px;
+}
+
+#sidebar-right {
+    display: block;
+    position: absolute;
+    text-align: center;
+    font-family:Arial;
+    right: 0;
+    top:0;
+    border: 1px solid gray;
+    width: 200px;
+    height:100%;
+    flex-wrap:wrap;
+    background-color:#474747;
+    color: #FFFFFF;
+    border-top-left-radius:8px;
+    border-bottom-left-radius:8px;
+}
