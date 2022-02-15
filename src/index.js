@@ -36,8 +36,15 @@ const resizeShape = (shape, params) => {
 
 delete Renderer.__plugins.interaction;
 const app = new PIXI.Application({
-    backgroundColor:0xffffff
+    antialias:true,
+    backgroundColor:0xffffff,
+    width:700,
+    height:500
 });
+
+const { renderer } = app;
+
+renderer.addSystem(EventSystem, 'events');
 
 const getMousePosition = (e) => {
     const rect = app.view.getBoundingClientRect();
@@ -55,22 +62,23 @@ const startDrawing = (e,type) => {
     newGraphic.lineStyle(1,0x000000);
     switch(type) {
         case 'rectangle':
-            newGraphic.drawRect(0,0,10,10);
+            newGraphic.drawRect(x,y,10,10);
             break;
         case 'circle':
-            newGraphic.drawCircle(0,0,10,10);
+            newGraphic.drawCircle(x,y,10,10);
             break;
     }
-    newGraphic.x = x;
-    newGraphic.y = y;
     newGraphic.endFill();
-    app.stage.addChild(newGraphic)
+    const texture = renderer.generateTexture(newGraphic);
+    const sprite = new PIXI.Sprite(texture);
+    sprite.x = x;
+    sprite.y = y;
+    sprite.anchor.set(0.5);
+    app.stage.addChild(sprite)
 }
 
 
 
-const { renderer } = app;
-renderer.addSystem(EventSystem, 'events');
 document.querySelector('#lab-view').appendChild(app.view);
 const addEvt  = () => document.querySelector('canvas').addEventListener('mousemove', draw);
 const rmEvt  = () => document.querySelector('canvas').removeEventListener('mousemove', draw);
