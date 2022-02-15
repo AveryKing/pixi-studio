@@ -19,10 +19,8 @@ ElementQueries.listen();
 ElementQueries.init();
 
 const tools = []
+let shapeBeingDrawn;
 
-const drawRectangle = () => {
-    console.log('drawing');
-}
 document.querySelectorAll('#sidebar-left a').forEach(button => {
     const toolObj = {}
     toolObj.name = button.dataset.type;
@@ -30,50 +28,59 @@ document.querySelectorAll('#sidebar-left a').forEach(button => {
         selectedTool = this.children[1].dataset.type;
     }
 })
-let isDrawing;
-const startDrawRectangle = () => {
-    if(selectedTool === 'rectangle') {
-    }
+
+const resizeShape = (shape, params) => {
+
 }
+
+
 delete Renderer.__plugins.interaction;
-const app = new PIXI.Application();
+const app = new PIXI.Application({
+    backgroundColor:0xffffff
+});
+
+const getMousePosition = () => {
+
+}
+
+const draw  = () => {
+
+}
+
+const startDrawing = (type) => {
+    const newGraphic = new PIXI.Graphics();
+    newGraphic.lineStyle(1,0x000000);
+    switch(type) {
+        case 'rectangle':
+            newGraphic.drawRect(0,0,10,10);
+            break;
+        case 'circle':
+            newGraphic.drawCircle(0,0,10,10);
+            break;
+    }
+
+    newGraphic.endFill();
+    app.stage.addChild(newGraphic)
+}
+
+
+
 const { renderer } = app;
-const stage = app.stage;
 renderer.addSystem(EventSystem, 'events');
 document.querySelector('#lab-view').appendChild(app.view);
 const addEvt  = () => document.querySelector('canvas').addEventListener('mousemove', draw);
 const rmEvt  = () => document.querySelector('canvas').removeEventListener('mousemove', draw);
+
 app.view.addEventListener('mousedown', function handleClick()
 {
     if(!selectedTool) {
         new bootstrap.Toast('#myToast').show();
     } else {
         addEvt();
-        switch(selectedTool) {
-            case 'rectangle':
-                drawRectangle();
-                break;
-        }
+        startDrawing(selectedTool);
     }
 });
 
 app.view.addEventListener('mouseup', rmEvt);
-// Render stage so that it becomes the root target for UI events
 renderer.render(app.view);
-/*
-app.view.on('click', function (e)  {
-    if(!selectedTool) {
-      new bootstrap.Toast('#myToast').show();
-        } else {
-        switch(selectedTool) {
-            case 'rectangle':
-                addEvt();
-                break;
-        }
-    }
-})
 
-app.view.on('pointerup', function() {
-    rmEvt();
-})
-*/
