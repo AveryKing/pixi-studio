@@ -19,20 +19,28 @@ ElementQueries.listen();
 ElementQueries.init();
 
 const tools = []
-let shapeBeingDrawn;
 
+let selectedSidebarButton;
 document.querySelectorAll('#sidebar-left a').forEach(button => {
-    const toolObj = {}
+    const toolObj = {};
     toolObj.name = button.dataset.type;
     button.parentElement.onclick = function()  {
-        selectedTool = this.children[1].dataset.type;
+        selectedTool = this.children[1].dataset.type
+        if(selectedSidebarButton) selectedSidebarButton.classList.remove('selected-sidebar-button');
+        selectedSidebarButton = this.closest('.sidebar-button');
+       selectedSidebarButton.classList.add('selected-sidebar-button');
     }
 })
 
+///////
+
+let shapeBeingDrawn;
 const resizeShape = (shape, params) => {
 
 }
+const draw  = () => {
 
+}
 
 delete Renderer.__plugins.interaction;
 const app = new PIXI.Application({
@@ -52,9 +60,6 @@ const getMousePosition = (e) => {
     const y = e.clientY - rect.top;
     return {x: x, y: y};
 }
-const draw  = () => {
-
-}
 
 const startDrawing = (e,type) => {
     const {x, y} = getMousePosition(e)
@@ -62,10 +67,10 @@ const startDrawing = (e,type) => {
     newGraphic.lineStyle(1,0x000000);
     switch(type) {
         case 'rectangle':
-            newGraphic.drawRect(x,y,10,10);
+            newGraphic.drawRect(x,y,30,30);
             break;
         case 'circle':
-            newGraphic.drawCircle(x,y,10,10);
+            newGraphic.drawCircle(x,y,30,30);
             break;
     }
     newGraphic.endFill();
@@ -80,8 +85,8 @@ const startDrawing = (e,type) => {
 
 
 document.querySelector('#lab-view').appendChild(app.view);
-const addEvt  = () => document.querySelector('canvas').addEventListener('mousemove', draw);
-const rmEvt  = () => document.querySelector('canvas').removeEventListener('mousemove', draw);
+const addEvt  = () => document.querySelector('canvas').addEventListener('mousemove',(e) => draw(e));
+const rmEvt  = () => document.querySelector('canvas').removeEventListener('mousemove', (e) => draw(e));
 
 app.view.addEventListener('mousedown', function handleClick(e)
 {
