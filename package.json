@@ -26,9 +26,7 @@
     "bootstrap-toaster": "^4.1.2",
     "bs-toaster": "^1.0.4",
     "css-element-queries": "^1.2.3",
-    "gsap": "^3.9.1",
     "jquery": "^3.6.0",
-    "jquery-ui": "^1.13.1",
-    "pixi.js": "^6.2.2"
+    "jquery-ui": "^1.13.1"
   }
 }
